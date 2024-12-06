@@ -27,3 +27,15 @@ const Users = require('./users-model')
 
 
 // Don't forget to add the router to the `exports` object so it can be required in other modules
+
+router.get('/', restricted, async (req, res, next) => {
+  try {
+    const users = await Users.find()
+    res.json(users)
+  } catch(err){
+    next(err)
+  }
+})
+
+
+module.exports = router
